@@ -26,5 +26,5 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    private FlickList watched;
+    private MovieList watched;
 }
