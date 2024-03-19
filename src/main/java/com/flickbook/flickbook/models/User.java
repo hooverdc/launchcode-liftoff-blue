@@ -1,17 +1,26 @@
 package com.flickbook.flickbook.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue()
-    private int id;
+    private Long id;
 
     @NotNull(message = "Username is required")
     @Column(name = "user_name", nullable = false, unique = true)
@@ -26,5 +35,6 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    private MovieList watched;
+    @Column(name = "userlists")
+    private List<MovieList> userLists = new ArrayList<>();
 }
