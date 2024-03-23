@@ -12,12 +12,30 @@ const UserProfile = () => {
     // Fetch user profile data when component mounts
 
     const fetchData = async () => {
+        try {
       const userData = await getUserProfileData();
        // Implement this function
       setUserProfile(userData);
+      } catch (error) {
+      // Error handling needs implementation
+      }
     };
     fetchData();
   }, []);
+
+  const handleAddMovie = async () => {
+      // Logic for adding a movie to the user's watched list
+      try {
+        // Implement logic for fetching movie data and adding it to the user's watched list
+        const movieData = {}; // Implement this
+        await addMovieToWatchedList(movieData);
+        // After adding the movie, fetch updated user profile data
+        const updatedUserData = await getUserProfileData();
+        setUserProfile(updatedUserData);
+      } catch (error) {
+        console.error('Error adding movie:', error);
+      }
+    };
 
   return (
     <div>
@@ -35,7 +53,8 @@ const UserProfile = () => {
               </li>
             ))}
           </ul>
-          <button>Add Movie</button>
+          <button onCLick={jandleAddMovie}>Add Movie</button>
+          {/* Add buttons or forms for writing reviews and liking movies */}
         </div>
       )}
     </div>

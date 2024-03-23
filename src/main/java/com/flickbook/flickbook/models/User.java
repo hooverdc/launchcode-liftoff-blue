@@ -19,7 +19,7 @@ import java.util.List;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "Username is required")
@@ -35,6 +35,9 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "userlists")
+    @Column(name = "profile_picture")
+    private String ProfilePicture;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MovieList> userLists = new ArrayList<>();
 }
