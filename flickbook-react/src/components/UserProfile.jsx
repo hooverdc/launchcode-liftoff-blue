@@ -1,41 +1,57 @@
-// UserProfile.js needs fetching of user data from backend API and logic for adding movies, writing reviews and liking movies (CRUD)
-
 import React, { useState, useEffect } from 'react';
-import { getUserProfileData, addMovieToWatchedList } from './api';
-// Implement this function to fetch user profile data
+import axios from 'axios';
 
 const UserProfile = () => {
   const [userProfile, setUserProfile] = useState(null);
 
   useEffect(() => {
-
     // Fetch user profile data when component mounts
-
     const fetchData = async () => {
-        try {
-      const userData = await getUserProfileData();
-       // Implement this function
-      setUserProfile(userData);
+      try {
+        const response = await axios.get('/api/user'); // Replace '/api/user' with your actual API endpoint
+        setUserProfile(response.data);
       } catch (error) {
-      // Error handling needs implementation
+        console.error('Error fetching user profile data:', error);
       }
     };
     fetchData();
   }, []);
 
   const handleAddMovie = async () => {
-      // Logic for adding a movie to the user's watched list
-      try {
-        // Implement logic for fetching movie data and adding it to the user's watched list
-        const movieData = {}; // Implement this
-        await addMovieToWatchedList(movieData);
-        // After adding the movie, fetch updated user profile data
-        const updatedUserData = await getUserProfileData();
-        setUserProfile(updatedUserData);
-      } catch (error) {
-        console.error('Error adding movie:', error);
-      }
-    };
+    try {
+      // TODO Replace '/api/user/movies' with the actual API endpoint
+      await axios.post('/api/user/movies', { movieId: '123' }); // Example movieId
+      // After adding the movie, fetch updated user profile data
+      const response = await axios.get('/api/user');
+      setUserProfile(response.data);
+    } catch (error) {
+      console.error('Error adding movie:', error);
+    }
+  };
+
+  const handleWriteReview = async (movieId, reviewText) => {
+    try {
+      // Replace '/api/user/movies/:movieId/reviews' with your actual API endpoint
+      await axios.post(`/api/user/movies/${movieId}/reviews`, { reviewText });
+      // After writing the review, fetch updated user profile data
+      const response = await axios.get('/api/user');
+      setUserProfile(response.data);
+    } catch (error) {
+      console.error('Error writing review:', error);
+    }
+  };
+
+  const handleLikeMovie = async (movieId) => {
+    try {
+      // Replace '/api/user/movies/:movieId/like' with your actual API endpoint
+      await axios.post(`/api/user/movies/${movieId}/like`);
+      // After liking the movie, fetch updated user profile data
+      const response = await axios.get('/api/user');
+      setUserProfile(response.data);
+    } catch (error) {
+      console.error('Error liking movie:', error);
+    }
+  };
 
   return (
     <div>
@@ -43,18 +59,9 @@ const UserProfile = () => {
         <div>
           <img src={userProfile.profilePicture} alt="Profile" />
           <h1>User Profile</h1>
-          <h2>Reviews</h2>
-          <ul>
-            {userProfile.reviews.map(review => (
-              <li key={review.id}>
-                <h3>{review.movieTitle}</h3>
-                <p>{review.reviewText}</p>
-                <button>{review.likes} Likes</button>
-              </li>
-            ))}
-          </ul>
-          <button onCLick={handleAddMovie}>Add Movie</button>
-          {/* Add buttons or forms for writing reviews and liking movies */}
+          {/* Display user's movie reviews and liked movies */}
+          <button onClick={handleAddMovie}>Add Movie</button>
+          {/* Button to add a movie */}
         </div>
       )}
     </div>
