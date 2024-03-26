@@ -38,6 +38,6 @@ public class User {
     @Column(name = "profile_picture")
     private String ProfilePicture;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = false)
     private List<MovieList> userLists = new ArrayList<>();
 }

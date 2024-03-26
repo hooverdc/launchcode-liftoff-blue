@@ -1,7 +1,7 @@
 // UserProfile.js needs fetching of user data from backend API and logic for adding movies, writing reviews and liking movies (CRUD)
 
 import React, { useState, useEffect } from 'react';
-import { getUserProfileData } from './api'; 
+import { getUserProfileData, addMovieToWatchedList } from './api';
 // Implement this function to fetch user profile data
 
 const UserProfile = () => {
@@ -53,7 +53,7 @@ const UserProfile = () => {
               </li>
             ))}
           </ul>
-          <button onCLick={jandleAddMovie}>Add Movie</button>
+          <button onCLick={handleAddMovie}>Add Movie</button>
           {/* Add buttons or forms for writing reviews and liking movies */}
         </div>
       )}
