@@ -1,18 +1,23 @@
 import React from 'react';
 import Search from "./Search";
 
-export default function Navbar() {
+export default function Navbar(props) {
+	const setPage = props.setPage;
+	const isSearch = props.page=="search";
+
 	return (
-		<div>
+		<div className="nav">
 			<nav>
 				<ul>
-					<li> <a href=""> HOME </a> </li> |  
-					<li> <a href=""> WATCH HISTORY </a> </li> |
-					<li> <a href=""> WATCH LIST </a> </li> | 
+					<li> <a href="#" onClick={(event) => setPage("home")}> HOME </a> </li> |  
+					<li> <a href="#" onClick={(event) => setPage("history")}> WATCH HISTORY </a> </li> |
+					<li> <a href="#" onClick={(event) => setPage("watchlist")}> WATCH LIST </a> </li> | 
 					<li> 
-					<Search /> 
+						{props.page=="search" ? 
+							<Search movies={props.movies} setMovies={props.setMovies} /> :
+							<a href="#" onClick={(event) => setPage("search")}> SEARCH </a>}
 					</li> |
-					<li> <a href=""> LOGIN/PROFILE </a> </li>
+					<li> <a href="#" onClick={(event) => setPage("profile")}> LOGIN/PROFILE </a> </li>
 				</ul>
 			</nav>
 		</div>
