@@ -4,6 +4,7 @@ import './App.css'
 import Navbar from "./components/Navbar"
 
 import ResponsiveAppBar from "./components/AppBar.jsx";
+import HarryPotter from "./components/HarryPotter.jsx";
 
 function App() {
 
@@ -13,6 +14,7 @@ function App() {
 					{/*<Navbar />*/}
 					{/*<Login />*/}
 					<ResponsiveAppBar/>
+                    <HarryPotter/>
 			</div>
     </>
   )
