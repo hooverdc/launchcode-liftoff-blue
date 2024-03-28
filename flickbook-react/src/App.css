@@ -54,30 +54,28 @@ nav li {
 	display: none; /* Hide scrollbar for Chrome, Safari and Opera */
 }
 
+.movie-app .row .img-box {
+	padding: 1rem;
+	height: 30rem;
+	width: 18rem;
+	/* border: 1px solid yellow; */
+}
+
 .movie-app .row img {
-	max-height: 22rem;
-	min-height: 20rem;
-	max-width: 16rem;
-	width: auto;
-	padding: 1rem;
+	height: 23rem;
+	width: 16rem;
+	padding-bottom: 1rem;
 }
 
-.movie-app .row .noimg {
-	margin: 1rem;
-	padding: 1rem;
-	height: 20rem;
-	width: 14rem;
-	background-color: #444466;
-}
-
-.movie-app .row .noimg p {
-	height: 50%;
-	margin-bottom: 10%;
-	overflow: hidden;
-}
-
-.movie-app .row .noimg .na {
+.noimg {
+	margin: 0;
+	padding: 50% 1rem;
+	margin-bottom: 1rem;
+	height: 22rem;
+	width: 16rem;
 	color: red;
 	font-size: 1.8rem;
 	font-weight: 600;
+	place-items: center;
+	background-color: #444466;
 }
