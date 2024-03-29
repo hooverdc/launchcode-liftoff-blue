@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar"
 
 import ResponsiveAppBar from "./components/AppBar.jsx";
 import HarryPotter from "./components/HarryPotter.jsx";
+import SignUp from "./components/sign-up-sheet/SignUp.jsx";
 
 function App() {
 
@@ -13,8 +14,9 @@ function App() {
 			<div>
 					{/*<Navbar />*/}
 					{/*<Login />*/}
-					<ResponsiveAppBar/>
-                    <HarryPotter/>
+					{/*<ResponsiveAppBar/>*/}
+                    {/*<HarryPotter/>*/}
+                <SignUp/>
 			</div>
     </>
   )
