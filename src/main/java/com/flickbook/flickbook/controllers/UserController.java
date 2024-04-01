@@ -15,10 +15,15 @@ public class UserController {
   @Autowired
   private UserService userService;
 
-  @PostMapping("add")
+  @PostMapping("/add")
   public String add(@RequestBody User user) {
     userService.saveUser(user);
     return "New user is added";
+  }
+
+  @GetMapping("/getAll")
+  public List<User> getAllUsers() {
+    return userService.getAllUsers();
   }
 
 }
