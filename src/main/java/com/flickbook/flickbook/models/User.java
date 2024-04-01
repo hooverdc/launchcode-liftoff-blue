@@ -22,17 +22,17 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    @NotNull(message = "Username is required")
-//    @Column(name = "user_name", nullable = false, unique = true)
+    @NotNull(message = "Username is required")
+    @Column(name = "user_name", nullable = false, unique = true)
     private String userName;
 
-//    @NotNull(message = "Email is required")
-//    @Column(name = "email", nullable = false, unique = true)
+    @NotNull(message = "Email is required")
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-//    @NotNull(message = "Password is required")
-//    @Size(min = 8, max = 64, message = "Password must be between 8 and 64 characters")
-//    @Column(name = "password")
+    @NotNull(message = "Password is required")
+    @Size(min = 8, max = 64, message = "Password must be between 8 and 64 characters")
+    @Column(name = "password")
     private String password;
 
 
