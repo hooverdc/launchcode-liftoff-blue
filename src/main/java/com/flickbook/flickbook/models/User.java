@@ -19,7 +19,7 @@ import java.util.List;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue()
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull(message = "Username is required")
@@ -35,6 +35,5 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @Column(name = "userlists")
-    private List<MovieList> userLists = new ArrayList<>();
+
 }
