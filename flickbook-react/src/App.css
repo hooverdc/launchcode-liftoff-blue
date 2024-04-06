@@ -1,10 +1,16 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
-
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height:100vh
+}
+main {
+  flex-grow: 1;
+}
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -40,3 +46,5 @@
 .read-the-docs {
   color: #888;
 }
+
+
