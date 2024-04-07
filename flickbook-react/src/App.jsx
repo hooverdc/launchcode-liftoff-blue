@@ -71,7 +71,7 @@ const App = () => {
         </Container>
       </main>
       <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterbottom> 
+        <Typography variant="h6" align="center" gutterbottom>
           Footer
         </Typography>
         <Typography variant="subtitle1" align="center" color="primary">
