@@ -1,12 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { CssBaseline, Typography, AppBar, Toolbar, Container, Button, Grid, Card, CardMedia, CardContent, CardActions } from '@material-ui/core';
 import { Home } from '@mui/icons-material';
 import useStyles from "./styles";
 
-const cards = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-
 const App = () => {
   const classes = useStyles();
+  const [movies, setMovies] = useState([]);
+
+  const fetchMovies = async () => {
+    try {
+      // Fetch data from API endpoint
+      const response = await fetch(http://img.omdbapi.com/?apikey=[yourkey]&);
+      const data = await response.json();
+
+      setMovies(data);
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchMovies();
+  }, []);
 
   return (
     <>
@@ -44,25 +59,25 @@ const App = () => {
         </Container>
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
-            {cards.map((card) => (
-              <Grid item key={card} xs={12} sm={6}>
+            {movies.map((movie) => (
+              <Grid item key={movie.id} xs={12} sm={6}>
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image="https://source.unsplash.com/random"
-                    title="image title"
+                    image={movie.imageUrl}
+                    title={movie.title}
                   />
                   <CardContent className={classes.cardContent}>
                     <Typography gutterBottom variant="h5">
-                      Heading
+                      {movie.title}
                     </Typography>
                     <Typography>
-                      This is a media card.
+                      {movie.description}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">View</Button>
-                    <Button size="small" color="primary">Edit</Button>
+                    <Button size="small" color="primary">Add</Button>
+                    <Button size="small" color="primary">Review</Button>
                   </CardActions>
                 </Card>
               </Grid>
