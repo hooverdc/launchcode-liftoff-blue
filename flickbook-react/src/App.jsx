@@ -1,7 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { CssBaseline, Typography, AppBar, Toolbar, Container, Button, Grid, Card, CardMedia, CardContent, CardActions } from '@material-ui/core';
 import { Home } from '@mui/icons-material';
-import useStyles from "./styles";
+// import useStyles from "./styles";
+import { makeStyles } from '@material-ui/core/styles';
+import useStyles from './styles';
+
+// const useStyles = makeStyles((theme) => ({
+//     container: {
+//         backgroundColor: theme.palette.background.paper,
+//         padding: theme.spacing(8, 0, 6)
+//     }
+// }));
 
 const App = () => {
   const classes = useStyles();
@@ -10,7 +19,7 @@ const App = () => {
   const fetchMovies = async () => {
     try {
       // Fetch data from API endpoint
-      const response = await fetch(http://img.omdbapi.com/?apikey=[yourkey]&);
+      const response = await fetch('http://www.omdbapi.com/?s=Batman&Country=United+States&apikey=263d22d8');
       const data = await response.json();
 
       setMovies(data);
