@@ -9,6 +9,9 @@ export default function Navbar(props) {
 		<div className="nav">
 			<nav>
 				<ul>
+{/* 					<li><Link to="/home">Home</Link></li> */}
+{/*           <li><Link to="/search">Search</Link></li> */}
+{/*           <li><Link to="/profile">Profile</Link></li> */}
 					<li> <a href="#" onClick={(event) => setPage("home")}> HOME </a> </li> |  
 					<li> <a href="#" onClick={(event) => setPage("history")}> WATCH HISTORY </a> </li> |
 					<li> <a href="#" onClick={(event) => setPage("watchlist")}> WATCH LIST </a> </li> | 

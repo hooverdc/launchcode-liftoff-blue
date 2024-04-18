@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navbar from "./components/Navbar";
@@ -12,8 +13,14 @@ function App() {
   
   return (
     <>
+    <BrowserRouter>
 			<div>
 				<Navbar page={page} setPage={setPage} movies={movies} setMovies={setMovies} />
+{/* 				<Routes> */}
+{/* 					<Route path="/home" element={<Home />} /> */}
+{/* 					<Route path="/search" element={<Search />} /> */}
+{/* 					<Route path="/profile" element={<Profile />} /> */}
+{/* 				</Routes> */}
 				<div className='container-fluid movie-app'>
 					{(page == "home") && <p>home</p>}
 				</div>
@@ -23,6 +30,7 @@ function App() {
 					</div>
 				</div>
 			</div>
+		</BrowserRouter>
     </>
   )
 }
