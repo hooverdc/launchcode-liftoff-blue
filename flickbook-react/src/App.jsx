@@ -1,36 +1,39 @@
-import React, { useState, useEffect } from 'react';
-import { CssBaseline, Typography, AppBar, Toolbar, Container, Button, Grid, Card, CardMedia, CardContent, CardActions } from '@material-ui/core';
+import React, { useState } from 'react';
+import { CssBaseline, Typography, AppBar, Toolbar, Container, Grid, Card, CardMedia, CardContent, CardActions, Button } from '@material-ui/core';
 import { Home } from '@mui/icons-material';
-// import useStyles from "./styles";
-import { makeStyles } from '@material-ui/core/styles';
-import useStyles from './styles';
+import Search from './components/Search';
+import useStyles from "./styles";
+import { styled } from '@mui/material/styles';
 
-// const useStyles = makeStyles((theme) => ({
-//     container: {
-//         backgroundColor: theme.palette.background.paper,
-//         padding: theme.spacing(8, 0, 6)
-//     }
-// }));
+const apiKey = '79ae106748bb469cd14de47c706af1c1'; // TMDB API key
+const apiUrl = 'https://api.themoviedb.org/3'; // TMDB API base URL
 
 const App = () => {
   const classes = useStyles();
   const [movies, setMovies] = useState([]);
 
-  const fetchMovies = async () => {
-    try {
-      // Fetch data from API endpoint
-      const response = await fetch('http://www.omdbapi.com/?s=Batman&Country=United+States&apikey=263d22d8');
-      const data = await response.json();
+  // Function to add a movie to the list of liked movies
+ const addMovieToList = async (movie) => {
+   try {
+     const response = await fetch('/api/add-movie', {
+       method: 'POST',
+       headers: {
+         'Content-Type': 'application/json',
+       },
+       body: JSON.stringify(movie),
+     });
 
-      setMovies(data);
-    } catch (error) {
-      console.error('Error fetching movies:', error);
-    }
-  };
+     if (!response.ok) {
+       throw new Error('Failed to add movie');
+     }
 
-  useEffect(() => {
-    fetchMovies();
-  }, []);
+     // Handle successful response (optional)
+     console.log('Movie added successfully!');
+   } catch (error) {
+     console.error('Error adding movie:', error);
+   }
+ };
+
 
   return (
     <>
@@ -44,28 +47,9 @@ const App = () => {
         </Toolbar>
       </AppBar>
       <main>
-        <Container maxWidth="sm" className={classes.container}>
-          <Typography variant="h2" align="center" color="textPrimary" gutterbottom>
-            Home
-          </Typography>
-          <Typography variant="h5" align="center" color="textSecondary" paragraph>
-            All the movies we think you might like!
-          </Typography>
-          <div className={classes.button}>
-            <Grid container spacing={2} justify="center">
-              <Grid item>
-                <Button variant="contained" color="primary">
-                  Movies to watch
-                </Button>
-              </Grid>
-              <Grid item>
-                <Button variant="outlined" color="primary">
-                  Add Movie to Favorites
-                </Button>
-              </Grid>
-            </Grid>
-          </div>
-        </Container>
+        {/* Search component */}
+        <Search setMovies={setMovies} apiKey={apiKey} apiUrl={apiUrl} />
+
         <Container className={classes.cardGrid} maxWidth="md">
           <Grid container spacing={4}>
             {movies.map((movie) => (
@@ -73,7 +57,7 @@ const App = () => {
                 <Card className={classes.card}>
                   <CardMedia
                     className={classes.cardMedia}
-                    image={movie.imageUrl}
+                    image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                     title={movie.title}
                   />
                   <CardContent className={classes.cardContent}>
@@ -81,12 +65,12 @@ const App = () => {
                       {movie.title}
                     </Typography>
                     <Typography>
-                      {movie.description}
+                      {movie.overview}
                     </Typography>
                   </CardContent>
                   <CardActions>
-                    <Button size="small" color="primary">Add</Button>
-                    <Button size="small" color="primary">Review</Button>
+                    <Button size="small" color="primary" onClick={() => addMovieToList(movie)}>Like</Button>
+                    {/* Add more actions/buttons as needed */}
                   </CardActions>
                 </Card>
               </Grid>
