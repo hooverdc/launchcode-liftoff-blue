@@ -1,5 +1,7 @@
 import React from 'react';
+import Home from "./Home";
 import Search from "./Search";
+// import { Link } from 'react-router-dom';
 
 export default function Navbar(props) {
 	const setPage = props.setPage;
@@ -10,8 +12,8 @@ export default function Navbar(props) {
 			<nav>
 				<ul>
 {/* 					<li><Link to="/home">Home</Link></li> */}
-{/*           <li><Link to="/search">Search</Link></li> */}
-{/*           <li><Link to="/profile">Profile</Link></li> */}
+{/* 					<li><Link to="/search">Search</Link></li> */}
+{/* 					<li><Link to="/profile">Profile</Link></li> */}
 					<li> <a href="#" onClick={(event) => setPage("home")}> HOME </a> </li> |  
 					<li> <a href="#" onClick={(event) => setPage("history")}> WATCH HISTORY </a> </li> |
 					<li> <a href="#" onClick={(event) => setPage("watchlist")}> WATCH LIST </a> </li> | 
