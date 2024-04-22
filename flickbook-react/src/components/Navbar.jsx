@@ -17,7 +17,8 @@ export default function Navbar(props) {
 							<Search movies={props.movies} setMovies={props.setMovies} /> :
 							<a href="#" onClick={(event) => setPage("search")}> SEARCH </a>}
 					</li> |
-					<li> <a href="#" onClick={(event) => setPage("profile")}> LOGIN/PROFILE </a> </li>
+					<li> <a href="#" onClick={(event) => setPage("registration")}> REGISTER</a> </li>|
+					<li> <a href="#" onClick={(event) => setPage("login")}> LOGIN </a> </li>
 				</ul>
 			</nav>
 		</div>

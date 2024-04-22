@@ -8,6 +8,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -24,6 +27,12 @@ public class Movie {
 
     @NotNull(message = "Year is required")
     private Long year;
+
+    @ManyToMany(mappedBy = "moviesWatched")
+    private List<User> usersWatched = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "moviesRecommend")
+    private List<User> usersRecommend = new ArrayList<>();
 
 //    private boolean series;
 //
