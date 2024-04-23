@@ -1,7 +1,8 @@
 import React from 'react';
 
 export default function MovieList (props) {
-let poster_base = "https://image.tmdb.org/t/p/w200/"; //TMDB base img url
+	let poster_base = "https://image.tmdb.org/t/p/w200/"; //TMDB base img url
+	
 	return (
 		<>
 			{ 
