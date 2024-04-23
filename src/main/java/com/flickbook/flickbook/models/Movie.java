@@ -15,17 +15,18 @@ import lombok.Setter;
 @Table(name = "movies")
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue()
     private Long id;
 
-    @NotNull(message = "Title is required")
+    @NotNull(message = "Name is required")
+    @Size(max = 250, message = "Movie name can only be 250 characters maximum")
+    @Column(name = "title")
     private String title;
 
-    @NotNull(message = "Year is required")
-    private Long year;
+    private String year;
 
-//    private boolean series;
-//
-//    private String description;
+    private boolean series;
+
+    private String description;
 
 }

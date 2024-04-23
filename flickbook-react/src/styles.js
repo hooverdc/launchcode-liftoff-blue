@@ -1,4 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles((theme) => ({
     container: {
@@ -6,11 +6,30 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(8, 0, 6)
     },
     icon: {
-        marginRight: '20px',
+    marginRight: '20px',
+
     },
-    buttons: {
-        marginTop: '40px'
+    button: {
+    marginTop: '40px'
+    },
+    cardGrid: {
+        paddintTop: '20x 0'
+    },
+    card: {
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column'
+    },
+    cardMedia: {
+        paddingTop: '56.25%'
+    },
+    cardContent: {
+        flexGrow: 1,
+    },
+    footer: {
+        backgroundColor: theme.palette.background.paper, 
+        padding: '50px 0'
     }
 }));
 
-export default useStyles();
+export default useStyles;

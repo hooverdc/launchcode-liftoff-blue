@@ -19,7 +19,7 @@
 //         <div class="register-link">
 //             <p>Don't have an account? <a href="#">Register</a></p>
 //       </div>
-//       </form>
+//       <form>
 //          </form>
 //       <form id='register' class='input-group-register'>
 //        <input type='text' class='input-field' placeholder='First Name' required>
