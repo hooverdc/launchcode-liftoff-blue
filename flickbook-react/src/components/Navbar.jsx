@@ -15,8 +15,8 @@ export default function Navbar(props) {
 {/* 					<li><Link to="/search">Search</Link></li> */}
 {/* 					<li><Link to="/profile">Profile</Link></li> */}
 					<li> <a href="#" onClick={(event) => setPage("home")}> HOME </a> </li> |  
-					<li> <a href="#" onClick={(event) => setPage("history")}> WATCH HISTORY </a> </li> |
-					<li> <a href="#" onClick={(event) => setPage("watchlist")}> WATCH LIST </a> </li> | 
+					<li> <a href="#" onClick={(event) => setPage("watched")}> WATCHED LIST </a> </li> |
+					<li> <a href="#" onClick={(event) => setPage("liked")}> LIKED LIST </a> </li> | 
 					<li> 
 						{props.page=="search" ? 
 							<Search movies={props.movies} setMovies={props.setMovies} /> :

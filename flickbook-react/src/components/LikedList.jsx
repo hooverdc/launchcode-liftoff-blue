@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-export default function Home() {
-    
+export default function LikedList() {
+
 	return (
 		<>
-		<p>This is the Home page</p>
+		<p>This is your Liked List page</p>
 		</>
 	);
 }

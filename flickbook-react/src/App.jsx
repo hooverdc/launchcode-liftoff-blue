@@ -1,39 +1,41 @@
-import React from 'react';
-import { useState } from 'react';
-// import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
+import axios from 'axios';
 import Home from "./components/Home";
 import Search from "./components/Search";
 import Navbar from "./components/Navbar";
 import MovieList from "./components/MovieList";
+import WatchedList from "./components/WatchedList";
+import LikedList from "./components/LikedList";
+import UserProfile from "./components/UserProfile";
 
-
-function App() {
+export default function App() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState("home");
-  
+  const [likedMovies, setLikedMovies] = useState([]);
+
   return (
-    <>
+		<>
+			<Navbar page={page} setPage={setPage} movies={movies} setMovies={setMovies} />
+{/* Displays "pages" */}
 			<div>
-				<Navbar page={page} setPage={setPage} movies={movies} setMovies={setMovies} />
-				<div className='container-fluid movie-app'>
-					{(page == "home") && <Home />}
-				</div>
-				<div className='container-fluid movie-app'>
-					<div className="row">
-						{(page == "search") && <MovieList movies={movies} />}
-					</div>
+				{(page == "home") && <Home />}
+			</div>
+			<div>
+				{(page == "watched") && <WatchedList />}
+			</div>
+			<div>
+				{(page == "liked") && <LikedList likedMovies={likedMovies} setLikedMovies={setLikedMovies} />}
+			</div>
+			<div>
+				{(page == "profile") && <UserProfile />}
+			</div>
+			<div className='container-fluid movie-app'>
+				<div className="row">
+					{(page == "search") && <MovieList movies={movies} />}
 				</div>
 			</div>
-			{/*     <BrowserRouter> */}
-      {/* 				<Routes> */}
-      {/* 					<Route path="/home" element={<Home />} /> */}
-      {/* 					<Route path="/search" element={<Search />} /> */}
-      {/* 				</Routes> */}
-      {/* 		</BrowserRouter> */}
-    </>
-  )
+		</>
+	);
 }
-
-export default App
