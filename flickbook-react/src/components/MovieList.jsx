@@ -14,9 +14,8 @@ let poster_base = "https://image.tmdb.org/t/p/w200/"; //TMDB base img url
 						<div className="noimg">
 							<p>NO IMAGE AVAILABLE</p>
 						</div>}
-					<p>{movie.title} ({movie.release_date.slice(0,4)}) 
-{/* 					({movie.Year}{movie.Type !== "movie" ? ` ${movie.Type})` : `)`} */}
-					</p>
+					<p>{movie.title} ({movie.release_date.slice(0,4)})</p> 
+{/* 				({movie.Year}{movie.Type !== "movie" ? ` ${movie.Type})` : `)`}   //OMDB date info */} 
 				</div>
 			))}
 		</>

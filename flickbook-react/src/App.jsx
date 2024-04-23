@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-import axios from 'axios';
 import Home from "./components/Home";
 import Search from "./components/Search";
 import Navbar from "./components/Navbar";
@@ -13,12 +12,10 @@ import UserProfile from "./components/UserProfile";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState("home");
-  const [likedMovies, setLikedMovies] = useState([]);
 
   return (
 		<>
 			<Navbar page={page} setPage={setPage} movies={movies} setMovies={setMovies} />
-{/* Displays "pages" */}
 			<div>
 				{(page == "home") && <Home />}
 			</div>
@@ -26,15 +23,15 @@ export default function App() {
 				{(page == "watched") && <WatchedList />}
 			</div>
 			<div>
-				{(page == "liked") && <LikedList likedMovies={likedMovies} setLikedMovies={setLikedMovies} />}
-			</div>
-			<div>
-				{(page == "profile") && <UserProfile />}
+				{(page == "liked") && <LikedList />}
 			</div>
 			<div className='container-fluid movie-app'>
 				<div className="row">
 					{(page == "search") && <MovieList movies={movies} />}
 				</div>
+			<div>
+				{(page == "profile") && <UserProfile />}
+			</div>
 			</div>
 		</>
 	);
