@@ -15,7 +15,7 @@ export default function MovieList (props) {
 	return (
 		<>
 			{ 
-			(props.movies.length==0) ? 
+			(props.movies.length === 0) ? 
 				<p className="notfound">Not Found</p> : 
 				props.movies.map((movie, index) => (
 				<div className="img-box">

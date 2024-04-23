@@ -20,13 +20,13 @@ const App = () => {
 			<Navbar page={page} setPage={setPage} movies={movies} setMovies={setMovies} />
 {/* Displays "pages" */}
 			<div>
-				{(page == "home") && <Home likedMovies={likedMovies}/>}
+				{(page == "home") && <Home />}
 			</div>
 			<div>
 				{(page == "watched") && <WatchedList />}
 			</div>
 			<div>
-				{(page == "liked") && <LikedList />}
+				{(page == "liked") && <LikedList likedMovies={likedMovies} setLikedMovies={setLikedMovies} />}
 			</div>
 			<div>
 				{(page == "profile") && <UserProfile />}

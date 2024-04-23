@@ -57,11 +57,11 @@ export default function UserProfile() {
     <div>
       {userProfile && (
         <div>
-          <img src={userProfile.profilePicture} alt="Profile" />
+          <img src={userProfile.profilePicture} alt="profile picture" />
           <h1>User Profile</h1>
-          {/* Display user's movie reviews and liked movies */}
-          <button onClick={handleAddMovie}>Add Movie</button>
+          <p> Display user's movie reviews and liked movies </p>
           {/* Button to add a movie */}
+          <button onClick={handleAddMovie}>Add Movie</button>
         </div>
       )}
     </div>
