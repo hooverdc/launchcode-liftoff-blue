@@ -57,8 +57,9 @@ export default function UserProfile() {
     <div>
       {userProfile && (
         <div>
-          <img src={userProfile.profilePicture} alt="profile picture" />
           <h1>User Profile</h1>
+          <img src={userProfile.profilePicture} alt="profile picture" />
+          
           <p> Display user's movie reviews and liked movies </p>
           {/* Button to add a movie */}
           <button onClick={handleAddMovie}>Add Movie</button>
