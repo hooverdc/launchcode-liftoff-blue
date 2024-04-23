@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import Search from './Search'; // Assuming Search.jsx is in the same directory
-import Navbar from './Navbar'; // Assuming Navbar.jsx is in the same directory
+import Search from './components/Search'; // Assuming Search.jsx is in the same directory
+import Navbar from './components/Navbar'; // Assuming Navbar.jsx is in the same directory
 
 const App = () => {
   const [likedMovies, setLikedMovies] = useState([]);
