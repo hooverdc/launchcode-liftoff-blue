@@ -1,37 +1,43 @@
 import React, { useEffect, useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './App.css';
 import axios from 'axios';
-import Search from './components/Search'; // Assuming Search.jsx is in the same directory
-import Navbar from './components/Navbar'; // Assuming Navbar.jsx is in the same directory
+import Home from "./components/Home";
+import Search from "./components/Search";
+import Navbar from "./components/Navbar";
+import MovieList from "./components/MovieList";
+import WatchedList from "./components/WatchedList";
+import LikedList from "./components/LikedList";
+import UserProfile from "./components/UserProfile";
 
 const App = () => {
+  const [movies, setMovies] = useState([]);
+  const [page, setPage] = useState("home");
   const [likedMovies, setLikedMovies] = useState([]);
 
-  useEffect(() => {
-    const fetchLikedMovies = async () => {
-      try {
-        const response = await axios.get('http://localhost:8080/api/moviesLiked'); // Replace with your actual endpoint
-        setLikedMovies(response.data);
-      } catch (error) {
-        console.error('Failed to fetch liked movies:', error);
-      }
-    };
-
-    fetchLikedMovies();
-  }, []);
-
   return (
-    <div>
-      <Navbar />
-      <Search />
-      {/* Render your liked movies here */}
-      {likedMovies.map(movie => (
-        <div key={movie.id}>
-          <h2>{movie.title}</h2>
-          {/* Render other movie details here */}
-        </div>
-      ))}
-    </div>
-  );
+		<>
+			<Navbar page={page} setPage={setPage} movies={movies} setMovies={setMovies} />
+{/* Displays "pages" */}
+			<div>
+				{(page == "home") && <Home likedMovies={likedMovies}/>}
+			</div>
+			<div>
+				{(page == "watched") && <WatchedList />}
+			</div>
+			<div>
+				{(page == "liked") && <LikedList />}
+			</div>
+			<div>
+				{(page == "profile") && <UserProfile />}
+			</div>
+			<div className='container-fluid movie-app'>
+				<div className="row">
+					{(page == "search") && <MovieList movies={movies} />}
+				</div>
+			</div>
+		</>
+	);
 };
 
 export default App;
