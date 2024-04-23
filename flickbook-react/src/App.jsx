@@ -9,7 +9,7 @@ const App = () => {
   useEffect(() => {
     const fetchLikedMovies = async () => {
       try {
-        const response = await axios.get('http://localhost:8080/api/liked-movies'); // Replace with your actual endpoint
+        const response = await axios.get('http://localhost:8080/api/moviesLiked'); // Replace with your actual endpoint
         setLikedMovies(response.data);
       } catch (error) {
         console.error('Failed to fetch liked movies:', error);
