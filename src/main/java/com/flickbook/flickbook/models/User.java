@@ -30,17 +30,25 @@ public class User {
     @Column(name = "pw_hash")
     private String pwHash;
 
-    @ManyToMany
-    private List<Movie> moviesWatched = new ArrayList<>();
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<Movie> moviesToWatched = new ArrayList<>();
 
-    @ManyToMany
-    private List<Movie> moviesRecommend = new ArrayList<>();
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    private List<Movie> moviesLiked = new ArrayList<>();
     public User(String userName, String password) {
         this.username = userName;
         this.pwHash = encoder.encode(password);
     }
     public User() {
     }
+
+    public void addMovieToWatched(Movie movie) {
+        moviesToWatched.add(movie);
+    }
+    public void addMovieLiked(Movie movie) {
+        moviesLiked.add(movie);
+    }
+
 
 
 

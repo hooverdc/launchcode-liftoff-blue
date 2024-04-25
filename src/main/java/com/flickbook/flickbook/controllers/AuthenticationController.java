@@ -10,14 +10,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@Controller
+@RestController
 @CrossOrigin(origins = "http://localhost:5173")
 public class AuthenticationController {
     @Autowired
@@ -49,7 +46,6 @@ public class AuthenticationController {
             return ResponseEntity.status(HttpStatus.CONFLICT).build(); // User already exists
         } else {
             User newUser = userRepository.save(user);
-            setUserInSession(session, newUser);
             return ResponseEntity.ok().build();
         }
     }

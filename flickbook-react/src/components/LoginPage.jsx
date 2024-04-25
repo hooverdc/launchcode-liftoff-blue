@@ -15,7 +15,8 @@ function LoginForm(props) {
                     "Content-type": "application/json; charset=UTF-8",
                 }});
             if (response.status === 200) {
-                localStorage.setItem('sessionId', response.data);
+                localStorage.setItem('sessionId', response.config.data);
+                console.log(localStorage.getItem('sessionId'));
                 // Redirect to login page or directly log the user in
                 alert("Login successful");
                 setPage("home");

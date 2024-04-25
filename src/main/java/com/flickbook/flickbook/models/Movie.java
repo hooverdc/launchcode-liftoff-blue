@@ -19,20 +19,25 @@ import java.util.List;
 @Table(name = "movies")
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
-    @NotNull(message = "Title is required")
     private String title;
-
-    @NotNull(message = "Year is required")
     private Long year;
 
-    @ManyToMany(mappedBy = "moviesWatched")
-    private List<User> usersWatched = new ArrayList<>();
+    private String poster;
 
-    @ManyToMany(mappedBy = "moviesRecommend")
-    private List<User> usersRecommend = new ArrayList<>();
+    public Movie(String id, String title, Long year, String poster) {
+        this.id = id;
+        this.title = title;
+        this.year = year;
+        this.poster = poster;
+    }
+
+    @ManyToMany(mappedBy = "moviesToWatched")
+    private List<User> usersToWatched = new ArrayList<>();
+
+    @ManyToMany(mappedBy = "moviesLiked")
+    private List<User> usersLiked = new ArrayList<>();
 
 //    private boolean series;
 //

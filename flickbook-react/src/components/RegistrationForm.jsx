@@ -19,7 +19,6 @@ function RegistrationForm(props) {
                     "Content-type": "application/json; charset=UTF-8",
                 }});
             if (response.status === 200) {
-                localStorage.setItem('sessionId', response.data);
                 // Redirect to login page or directly log the user in
                 alert("Registration successful");
                 setPage("login");
