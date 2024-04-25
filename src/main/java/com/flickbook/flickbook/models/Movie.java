@@ -8,9 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -19,23 +16,18 @@ import java.util.List;
 @Table(name = "movies")
 public class Movie {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue()
     private Long id;
 
-    @NotNull(message = "Title is required")
+    @NotNull(message = "Name is required")
+    @Size(max = 250, message = "Movie name can only be 250 characters maximum")
+    @Column(name = "title")
     private String title;
 
-    @NotNull(message = "Year is required")
-    private Long year;
+    private String year;
 
-    @ManyToMany(mappedBy = "moviesWatched")
-    private List<User> usersWatched = new ArrayList<>();
+    private boolean series;
 
-    @ManyToMany(mappedBy = "moviesRecommend")
-    private List<User> usersRecommend = new ArrayList<>();
-
-//    private boolean series;
-//
-//    private String description;
+    private String description;
 
 }
