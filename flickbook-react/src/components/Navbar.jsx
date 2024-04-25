@@ -5,7 +5,6 @@ import Search from "./Search";
 
 export default function Navbar(props) {
 	const setPage = props.setPage;
-	const isSearch = props.page=="search";
 
 	return (
 		<div className="nav">
@@ -19,7 +18,7 @@ export default function Navbar(props) {
 					<li> <a href="#" onClick={(event) => setPage("liked")}> LIKED LIST </a> </li> | 
 					<li> 
 						{props.page=="search" ? 
-							<Search movies={props.movies} setMovies={props.setMovies} /> :
+							<Search setMovies={props.setMovies} /> :
 							<a href="#" onClick={(event) => setPage("search")}> SEARCH </a>}
 					</li> |
 					<li> <a href="#" onClick={(event) => setPage("profile")}> LOGIN/PROFILE </a> </li>

@@ -28,6 +28,25 @@ a:hover {
   color: #9999FF;
 }
 
+.movie-page {
+	margin: 0 auto;
+	max-width: 80%;
+}
+
+.movie-page h1 {
+	margin: 1rem;
+	font-weight: bold;
+}
+
+.movie-page p {
+	margin: .5rem;
+	text-align: left;
+}
+
+.movie-page ul {
+	list-style-type: none;
+	text-align: left;
+}
 
 nav {
 	margin: auto;
