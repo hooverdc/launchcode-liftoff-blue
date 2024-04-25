@@ -9,13 +9,14 @@ import Movie from "./components/Movie";
 import WatchedList from "./components/WatchedList";
 import LikedList from "./components/LikedList";
 import UserProfile from "./components/UserProfile";
-import RegistrationForm from "./components/RegistrationForm.jsx";
-import LoginPage from "./components/LoginPage.jsx";
+import Register from "./components/Register.jsx";
+import Login from "./components/Login.jsx";
 
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [movieData, setMovieData] = useState("");
   const [page, setPage] = useState("home");
+  const [likedMovies, setLikedMovies] = useState([]);
 
   return (
 		<>
@@ -27,7 +28,7 @@ export default function App() {
 				{(page == "watched") && <WatchedList />}
 			</div>
 			<div>
-				{(page == "liked") && <LikedList />}
+				{(page == "liked") && <LikedList likedMovies={likedMovies} setLikedMovies={setLikedMovies} />}
 			</div>
 			<div>
 				{(page == "search") && <MovieList movies={movies} setMovieData={setMovieData} setPage={setPage}/>}
@@ -39,12 +40,11 @@ export default function App() {
 				{(page == "profile") && <UserProfile />}
 			</div>
 			<div>
-				{(page == "registration") && <RegistrationForm setPage={setPage}/>}
+				{(page == "register") && <Register setPage={setPage}/>}
 			</div>
 			<div>
-				{(page == "login") && <LoginPage setPage={setPage}/>}
+				{(page == "login") && <Login setPage={setPage}/>}
 			</div>
-
 		</>
 	);
 }
