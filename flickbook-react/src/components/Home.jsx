@@ -86,7 +86,7 @@ function Home(props) {
         return (
             <>
                 <h1>You are logged in</h1>
-                <h2>Movies {username} like</h2>
+                <h2>{username}'s liked movies</h2>
                 {likeMovies.map((movie, index) => (
                     <div className="img-box">
                         {movie.poster !== "N/A" ?
@@ -99,7 +99,7 @@ function Home(props) {
 
                     </div>
                 ))}
-                <h2>Movies on {username} watch list</h2>
+                <h2>{username}'s watch list</h2>
                 {toWatchMovies.map((movie, index) => (
                     <div className="img-box">
                         {movie.poster !== "N/A" ?

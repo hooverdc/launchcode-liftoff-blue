@@ -52,18 +52,22 @@ export default function MovieList (props) {
 	};
 	return (
 		<>
-			{props.movies.map((movie, index) => (
-				<div className="img-box">
-					{movie.Poster !== "N/A" ?
-						<img src={movie.Poster} alt={movie.Title}></img> :
-						<div className="noimg">
-							<p>NO IMAGE AVAILABLE</p>
-						</div>}
-					<p>{movie.Title} ({movie.Year}{movie.Type !== "movie" ? ` ${movie.Type})` : `)`}</p>
-					<button onClick={() => likeMovie(movie)}>Like</button>
-					<button onClick={() => toWatchMovie(movie)}>Watch later</button>
+			<div className='container-fluid movie-app'>
+				<div className="row">
+					{props.movies.map((movie, index) => (
+						<div className="img-box">
+							{movie.Poster !== "N/A" ?
+								<img src={movie.Poster} alt={movie.Title}></img> :
+								<div className="noimg">
+									<p>NO IMAGE AVAILABLE</p>
+								</div>}
+							<p>{movie.Title} ({movie.Year}{movie.Type !== "movie" ? ` ${movie.Type})` : `)`}</p>
+							<button onClick={() => likeMovie(movie)}>Like</button>
+							<button onClick={() => toWatchMovie(movie)}>Watch later</button>
+						</div>
+					))}
 				</div>
-			))}
+			</div>
 		</>
 	);
 }

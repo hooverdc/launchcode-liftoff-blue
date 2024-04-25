@@ -27,23 +27,18 @@ function App() {
   
   return (
     <>
-			<div>
+			
 				<Navbar page={page} setPage={setPage} movies={movies} setMovies={setMovies} isLoggedIn={isLoggedIn} setLoggedIn = {setIsLoggedIn} />
-				<div className='container-fluid movie-app'>
+				
 					{(page == "registration") && <RegistrationForm setPage={setPage}/>}
-				</div>
-				<div className='container-fluid movie-app'>
+				
 					{(page == "login") && <LoginPage setPage={setPage}/>}
-				</div>
-				<div className='container-fluid movie-app'>
+				
 					{(page == "home") && <Home page={page} setPage={setPage} isLoggedIn = {isLoggedIn} likeMovies={likeMovies} setLikeMovies={setLikeMovies} toWatchMovies={toWatchMovies} setToWatchMovies={setToWatchMovies} username={username} setUsername={setUsername}/>}
-				</div>
-				<div className='container-fluid movie-app'>
-					<div className="row">
-						{(page == "search") && <MovieList movies={movies} isLoggedIn={isLoggedIn} />}
-					</div>
-				</div>
-			</div>
+				
+					{(page == "search") && <MovieList movies={movies} isLoggedIn={isLoggedIn} />}
+				
+			
     </>
   )
 }
