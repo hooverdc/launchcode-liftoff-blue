@@ -20,6 +20,7 @@ export default function MovieList (props) {
 		axios.post('http://localhost:8080/api/movies-liked/add', movieToLike)
 			.then((response) => {
 				console.log(response);
+				alert("movie liked");
 			})
 			.catch((error) => {
 				alert("movie already liked");
@@ -42,9 +43,10 @@ export default function MovieList (props) {
 		axios.post('http://localhost:8080/api/movies-to-watch/add', movieToLike)
 			.then((response) => {
 				console.log(response);
+				alert("movie added to watch list");
 			})
 			.catch((error) => {
-				alert("mmovie already added to watch list");
+				alert("movie already added to watch list");
 				console.log('Failed to add movie to watch list', error);
 			});
 	};

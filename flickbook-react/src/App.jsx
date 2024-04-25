@@ -13,17 +13,22 @@ function App() {
   const [movies, setMovies] = useState([]);
   const [page, setPage] = useState("registration");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [likeMovies, setLikeMovies] = useState([]);
+  const [toWatchMovies, setToWatchMovies] = useState([]);
+  const [username, setUsername] = useState('');
 
 	useEffect(() => {
 		if (localStorage.getItem('sessionId') !== null) {
 			setIsLoggedIn(true);
+			let username_str = JSON.parse(localStorage.getItem('sessionId')).username;
+			setUsername(username_str);
 		}
 	}, [isLoggedIn, page]);
   
   return (
     <>
 			<div>
-				<Navbar page={page} setPage={setPage} movies={movies} setMovies={setMovies} isLoggedIn={isLoggedIn} />
+				<Navbar page={page} setPage={setPage} movies={movies} setMovies={setMovies} isLoggedIn={isLoggedIn} setLoggedIn = {setIsLoggedIn} />
 				<div className='container-fluid movie-app'>
 					{(page == "registration") && <RegistrationForm setPage={setPage}/>}
 				</div>
@@ -31,7 +36,7 @@ function App() {
 					{(page == "login") && <LoginPage setPage={setPage}/>}
 				</div>
 				<div className='container-fluid movie-app'>
-					{(page == "home") && <Home setPage={setPage} isLoggedIn = {isLoggedIn} />}
+					{(page == "home") && <Home page={page} setPage={setPage} isLoggedIn = {isLoggedIn} likeMovies={likeMovies} setLikeMovies={setLikeMovies} toWatchMovies={toWatchMovies} setToWatchMovies={setToWatchMovies} username={username} setUsername={setUsername}/>}
 				</div>
 				<div className='container-fluid movie-app'>
 					<div className="row">

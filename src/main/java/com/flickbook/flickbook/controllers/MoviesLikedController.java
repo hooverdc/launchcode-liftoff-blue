@@ -31,4 +31,28 @@ public class MoviesLikedController {
         userRepository.save(user);
         return "Movie is added to liked";
     }
+
+    @GetMapping("/get")
+    public Iterable<Movie> getMoviesLiked(@RequestParam String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return null;
+        }
+        return user.getMoviesLiked();
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteMovieLiked(@RequestParam String username, @RequestParam String movieId) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return "User not found";
+        }
+        Optional<Movie> movie = movieRepository.findById(movieId);
+        if (movie.isEmpty()) {
+            return "Movie not found";
+        }
+        user.deleteMovieLiked(movie.get());
+        userRepository.save(user);
+        return "Movie is removed from liked";
+    }
 }

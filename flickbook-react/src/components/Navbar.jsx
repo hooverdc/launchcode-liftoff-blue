@@ -5,6 +5,12 @@ export default function Navbar(props) {
 	const setPage = props.setPage;
 	const isSearch = props.page==="search";
 	const isLoggedIn = props.isLoggedIn;
+	const setLoggedIn = props.setLoggedIn;
+
+	const logout = () => {
+		setLoggedIn(false);
+		localStorage.removeItem('sessionId');
+	}
 
 	return (
 		<div className="nav">
@@ -21,6 +27,7 @@ export default function Navbar(props) {
 					{!isLoggedIn && <li> <a href="#" onClick={(event) => setPage("registration")}> REGISTER</a>| </li>}
 
 					{!isLoggedIn && <li> <a href="#" onClick={(event) => setPage("login")}> LOGIN </a> </li>}
+					{isLoggedIn && <li> <a href="#" onClick= {logout}> LOGOUT </a> </li>}
 				</ul>
 			</nav>
 		</div>

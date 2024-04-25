@@ -1,5 +1,7 @@
 package com.flickbook.flickbook.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -34,9 +36,11 @@ public class Movie {
     }
 
     @ManyToMany(mappedBy = "moviesToWatched")
+    @JsonBackReference
     private List<User> usersToWatched = new ArrayList<>();
 
     @ManyToMany(mappedBy = "moviesLiked")
+    @JsonBackReference
     private List<User> usersLiked = new ArrayList<>();
 
 //    private boolean series;

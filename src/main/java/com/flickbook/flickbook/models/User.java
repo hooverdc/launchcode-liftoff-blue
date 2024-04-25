@@ -1,5 +1,6 @@
 package com.flickbook.flickbook.models;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -30,10 +31,12 @@ public class User {
     @Column(name = "pw_hash")
     private String pwHash;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Movie> moviesToWatched = new ArrayList<>();
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<Movie> moviesLiked = new ArrayList<>();
     public User(String userName, String password) {
         this.username = userName;
@@ -47,6 +50,19 @@ public class User {
     }
     public void addMovieLiked(Movie movie) {
         moviesLiked.add(movie);
+    }
+    public List<Movie> getMoviesToWatched() {
+        return moviesToWatched;
+    }
+    public List<Movie> getMoviesLiked() {
+        return moviesLiked;
+    }
+
+    public void deleteMovieToWatched(Movie movie) {
+        moviesToWatched.remove(movie);
+    }
+    public void deleteMovieLiked(Movie movie) {
+        moviesLiked.remove(movie);
     }
 
 

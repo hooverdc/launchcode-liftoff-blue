@@ -31,4 +31,28 @@ public class MovieToWatchController {
         userRepository.save(user);
         return "Movie is added to to watch list";
     }
+
+    @GetMapping("/get")
+    public Iterable<Movie> getMoviesLiked(@RequestParam String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return null;
+        }
+        return user.getMoviesToWatched();
+    }
+
+    @DeleteMapping("/delete")
+    public String deleteMovieLiked(@RequestParam String username, @RequestParam String movieId) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            return "User not found";
+        }
+        Optional<Movie> movie = movieRepository.findById(movieId);
+        if (movie.isEmpty()) {
+            return "Movie not found";
+        }
+        user.deleteMovieToWatched(movie.get());
+        userRepository.save(user);
+        return "Movie is removed from to watch list";
+    }
 }
