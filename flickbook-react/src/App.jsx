@@ -34,8 +34,8 @@ function App() {
 				
 					{(page == "login") && <LoginPage setPage={setPage}/>}
 				
-					{(page == "home") && <Home page={page} setPage={setPage} isLoggedIn = {isLoggedIn} likeMovies={likeMovies} setLikeMovies={setLikeMovies} toWatchMovies={toWatchMovies} setToWatchMovies={setToWatchMovies} username={username} setUsername={setUsername}/>}
-				
+					{(page == "home") && <Home page={page} setPage={setPage} isLoggedIn={isLoggedIn} likeMovies={likeMovies} setLikeMovies={setLikeMovies} toWatchMovies={toWatchMovies} setToWatchMovies={setToWatchMovies} username={username} setUsername={setUsername}/>}
+{/* 					{(page == "watchlist") && <WatchList page={page} setPage={setPage} isLoggedIn={isLoggedIn} likeMovies={likeMovies} setLikeMovies={setLikeMovies} toWatchMovies={toWatchMovies} setToWatchMovies={setToWatchMovies} username={username} setUsername={setUsername}/>} */}
 					{(page == "search") && <MovieList movies={movies} isLoggedIn={isLoggedIn} />}
 				
 			
