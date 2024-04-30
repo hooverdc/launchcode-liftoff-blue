@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from 'axios';
 
-export default function WatchList(props) {
+export default function LikedList(props) {
     const page = props.page;
     const setPage = props.setPage;
     const isLoggedIn = props.isLoggedIn;
@@ -58,31 +58,31 @@ export default function WatchList(props) {
     }
 
     if (isLoggedIn) {
-        return (
+			return (
 					<>
-						<h2>{username}'s watch list</h2>
+						<h2>{username}'s liked movies</h2>
 						<div className='container-fluid movie-app'>
-							<div className="row">		
-								{toWatchMovies.map((movie, index) => (
+							<div className="row">
+								{likeMovies.map((movie, index) => (
 								<div className="img-box">
-									{movie.poster !== "N/A" ?
-									<img src={movie.poster} alt={movie.title}></img> :
-									<div className="noimg">
-										<p>NO IMAGE AVAILABLE</p>
-									</div>}
-									<p>{movie.title} ({movie.year})</p>	
-									<button onClick={() => deleteToWatchMovie(movie)}>Remove from watchlist</button>
+								{movie.poster !== "N/A" ?
+								<img src={movie.poster} alt={movie.title}></img> :
+								<div className="noimg">
+									<p>NO IMAGE AVAILABLE</p>
+								</div>}
+								<p>{movie.title} ({movie.year})</p>
+								<button onClick={() => deleteLikeMovie(movie)}>Unlike</button>
 								</div>
 								))}
 							</div>
 						</div>
 					</>
-        );
+			);
     } else {
-        return (
-					<>
-						<h1>You must logged in to view your Watch List</h1>
-					</>
-        );
+			return (
+				<div>
+					<h1>You must logged in to view your Liked Movies</h1>
+				</div>
+			);
     }
 }

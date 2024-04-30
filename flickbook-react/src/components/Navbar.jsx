@@ -17,17 +17,16 @@ export default function Navbar(props) {
 			<nav>
 				<ul>
 					<li> <a href="#" onClick={(event) => setPage("home")}> HOME </a> </li> |  
-					<li> <a href="#" onClick={(event) => setPage("history")}> WATCH HISTORY </a> </li> |
+					<li> <a href="#" onClick={(event) => setPage("likedlist")}> LIKED MOVIES </a> </li> |
 					<li> <a href="#" onClick={(event) => setPage("watchlist")}> WATCH LIST </a> </li> | 
-					<li> 
-						{props.page=="search" ? 
-							<Search movies={props.movies} setMovies={props.setMovies} /> :
-							<a href="#" onClick={(event) => setPage("search")}> SEARCH </a>}
+					<li> {props.page=="search" ? 
+						<Search movies={props.movies} setMovies={props.setMovies} /> :
+						<a href="#" onClick={(event) => setPage("search")}> SEARCH </a>}
 					</li> |
-					{!isLoggedIn && <li> <a href="#" onClick={(event) => setPage("registration")}> REGISTER</a>| </li>}
-
-					{!isLoggedIn && <li> <a href="#" onClick={(event) => setPage("login")}> LOGIN </a> </li>}
-					{isLoggedIn && <li> <a href="#" onClick= {logout}> LOGOUT </a> </li>}
+					<li> {isLoggedIn ?
+						<a href="#" onClick= {logout}> LOGOUT </a> : 
+						<a href="#" onClick={(event) => setPage("login")}> LOGIN </a>}
+					</li>
 				</ul>
 			</nav>
 		</div>

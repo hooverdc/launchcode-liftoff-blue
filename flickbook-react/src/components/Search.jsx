@@ -4,7 +4,8 @@ import { useState, useEffect } from 'react';
 export default function Search(props) {
 	const [searchTerm, setSearchTerm] = useState('');
 	
-	const getSearchResults = async (searchTerm) => { 
+	const getSearchResults = async (searchTerm) => {
+// 	TODO : UPDATE WITH TMDB API
 		const url = `http://www.omdbapi.com/?s=${searchTerm}&Country=United+States&apikey=263d22d8`;
 		const response = await fetch(url);
 		const responseJson = await response.json();

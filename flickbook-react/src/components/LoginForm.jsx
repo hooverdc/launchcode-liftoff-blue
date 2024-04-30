@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function LoginForm(props) {
+export default function LoginForm(props) {
     const setPage = props.setPage;
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -31,6 +31,7 @@ function LoginForm(props) {
         }};
 
     return (
+    <>
         <form onSubmit={handleSubmit}>
             <label>
                 Username:
@@ -42,7 +43,8 @@ function LoginForm(props) {
             </label>
             <input type="submit" value="Submit" />
         </form>
+        <br/>
+        <p>Don't already have an account? <a href="#" onClick={() => setPage("registration")}>Register here</a></p>
+        </>
     );
 }
-
-export default LoginForm;

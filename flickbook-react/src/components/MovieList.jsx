@@ -1,6 +1,5 @@
 import React , { useState } from 'react'
 import axios from 'axios';
-import reactLogo from '.././assets/react.svg'
 
 export default function MovieList (props) {
 	const isLoggedIn = props.isLoggedIn;
@@ -49,7 +48,8 @@ export default function MovieList (props) {
 				alert("movie already added to watch list");
 				console.log('Failed to add movie to watch list', error);
 			});
-	};
+	}
+	
 	return (
 		<>
 			<div className='container-fluid movie-app'>
