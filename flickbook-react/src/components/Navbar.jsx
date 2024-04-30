@@ -9,6 +9,8 @@ export default function Navbar(props) {
 
 	const logout = () => {
 		setLoggedIn(false);
+		setPage("login");
+		// setMessage("You are now logged out");
 		localStorage.removeItem('sessionId');
 	}
 

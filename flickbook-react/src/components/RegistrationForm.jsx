@@ -39,19 +39,24 @@ export default function RegistrationForm(props) {
     return (
         <>
         <form onSubmit={handleSubmit}>
-            <label>
+					<ul>
+            <li><label>
                 Username:
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-            </label>
-            <label>
+                <input type="text" value={username} 
+                onChange={e => setUsername(e.target.value)} />
+            </label></li>
+            <li><label>
                 Password:
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            </label>
-            <label>
+                <input type="password" value={password} 
+                onChange={e => setPassword(e.target.value)} />
+            </label></li>
+            <li><label>
                 Verify Password:
-                <input type="password" value={verifyPassword} onChange={e => setVerifyPassword(e.target.value)} />
-            </label>
-            <input type="submit" value="Submit" />
+                <input type="password" value={verifyPassword} 
+                onChange={e => setVerifyPassword(e.target.value)} />
+            </label></li>
+            <li><input type="submit" value="Submit" /></li>
+					</ul>
         </form>
         <br/>
     <p>Already have an account? <a href="#" onClick={() => setPage("login")}>Login here</a></p>

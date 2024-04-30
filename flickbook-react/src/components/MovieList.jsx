@@ -71,7 +71,7 @@ export default function MovieList (props) {
 						<p><a href="#" onClick={(event) => viewMovieInfo(movie) }>
 						{movie.title} ({movie.release_date.slice(0,4)})</a></p> 
 						<button onClick={() => likeMovie(movie)}>Like</button>
-						<button onClick={() => addToWatchList(movie)}>To-Watch</button>
+						<button onClick={() => toWatchMovie(movie)}>Watch later</button>
 					</div>
 				))}
 			</div>

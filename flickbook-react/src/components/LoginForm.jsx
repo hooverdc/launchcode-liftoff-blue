@@ -18,7 +18,7 @@ export default function LoginForm(props) {
                 localStorage.setItem('sessionId', response.config.data);
                 console.log(localStorage.getItem('sessionId'));
                 // Redirect to login page or directly log the user in
-                alert("Login successful");
+//                 alert("Login successful");
                 setPage("home");
             } else {
                 alert('Login failed');
@@ -33,15 +33,19 @@ export default function LoginForm(props) {
     return (
     <>
         <form onSubmit={handleSubmit}>
-            <label>
-                Username:
-                <input type="text" value={username} onChange={e => setUsername(e.target.value)} />
-            </label>
-            <label>
-                Password:
-                <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-            </label>
-            <input type="submit" value="Submit" />
+        	<ul>
+            <li><label>
+                Username: 
+                <input type="text" value={username} 
+                onChange={e => setUsername(e.target.value)} />
+            </label></li>
+            <li><label>
+                Password: 
+                <input type="password" value={password} 
+                onChange={e => setPassword(e.target.value)} />
+            </label></li>
+            <li><input type="submit" value="Submit" /></li>
+					</ul>
         </form>
         <br/>
         <p>Don't already have an account? <a href="#" onClick={() => setPage("registration")}>Register here</a></p>

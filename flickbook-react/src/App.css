@@ -79,3 +79,20 @@ nav li {
 	place-items: center;
 	background-color: #444466;
 }
+
+form {
+	align-items: center;
+}
+
+form input {
+	margin: .5rem;
+}
+
+form ul {
+	list-style-type: none;
+	align-items: left;
+}
+
+form li {
+	margin: 0;
+}
