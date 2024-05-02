@@ -11,18 +11,15 @@ export default function WatchList(props) {
     const setToWatchMovies = props.setToWatchMovies;
     const username = props.username;
     const setUsername = props.setUsername;
+    const [change, setChange] = useState(false);
 
 	useEffect(() => {
-		if (isLoggedIn && (likeMovies.length == 0 || likeMovies == undefined 
-			|| toWatchMovies.length == 0 || toWatchMovies == undefined)) {
-			axios.get('http://localhost:8080/api/movies-liked/get?username=' + username)
-				.then((response) => { setLikeMovies(response.data); })
-				.catch((error) => { console.log('Failed to get liked movies', error); });
+		if (isLoggedIn) {
 			axios.get('http://localhost:8080/api/movies-to-watch/get?username=' + username)
 				.then((response) => { setToWatchMovies(response.data); })
 				.catch((error) => { console.log('Failed to get to watch movies', error); });
 		}
-	}, [page, setPage, isLoggedIn, likeMovies, setLikeMovies, toWatchMovies, setToWatchMovies]
+	}, [change]
 	);
 
     const deleteToWatchMovie = async (movie) => {
@@ -30,7 +27,7 @@ export default function WatchList(props) {
             .then((response) => {
                 console.log(response);
 //                 alert("movie removed from watch list");
-                setToWatchMovies([]);
+                setChange(!change);
             })
             .catch((error) => {
 //                 alert("movie already removed from watch list");
