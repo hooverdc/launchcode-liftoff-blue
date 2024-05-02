@@ -43,6 +43,11 @@ nav li {
 	padding: 0 .5rem;
 }
 
+.movie-page {
+	margin: 0 auto;
+	max-width: 40rem;
+}
+
 .movie-app .row {
 	overflow-x: auto;
 	flex-wrap: nowrap;

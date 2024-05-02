@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 export default function Movie (props) {
 	const movie = props.movieData;
+	const poster_base = "https://image.tmdb.org/t/p/w500/"; //TMDB base img url
 	const genres = { 
     28: "Action",
     12: "Adventure",
@@ -23,7 +24,6 @@ export default function Movie (props) {
     10752: "War",
     37: "Western"
   };
-	let poster_base = "https://image.tmdb.org/t/p/w500/"; //TMDB base img url
 	
 	function convertGenreIds (arr) {
 		let genreNames = ""
@@ -33,6 +33,24 @@ export default function Movie (props) {
 		});
 		return genreNames;
 	}
+  
+  const [sources, setSources] = useState([]);
+	const [prevSource, setPrevSource] = useState("");
+  	
+	const getStreamingInfo = async (movieId) => { 
+		const watchmodeKey = 'NlPwlsF74SSwlMGuaMkimjHrYxIPK6mqKVLocpPE';
+		const url = 'https://api.watchmode.com/v1/title/movie-' + movieId
+			+ '/sources/?regions=US&apiKey=' + watchmodeKey;	
+// 		try { } catch (error) { console.log("fetch response failed", error); }
+		const response = await fetch(url);
+		const responseJson = await response.json();
+	
+		if (responseJson) { 
+			setSources(responseJson);
+		} else setSources({});
+	}
+	
+	useEffect(() => { getStreamingInfo(movie.id); }, [movie.id]);
 	
 	return (
 		<>
@@ -45,7 +63,21 @@ export default function Movie (props) {
 				<p><strong>Genre:</strong> {convertGenreIds(movie.genre_ids)} </p>
 				<p><strong>Summary:</strong> {movie.overview} </p>
 			</div>
-{/* 			TODO : ADD STREAMING INFO */}
+			<br />
+{/* STREAMING INFO */}
+			<h3>Where to Watch</h3>
+			<div>
+				{sources !== null && sources.map((source, i) => (
+// 					setPrevSource(source.name);
+					<div key={i}> 
+{/* 					{source.name !== prevSource ?  */}
+							<strong>{source.name}</strong>	{source.type} {source.format} {source.price}
+					</div>
+				))}
+				<br />
+				<p>Streaming data powered by &nbsp;
+				<a href="https://www.watchmode.com/">Watchmode.com</a></p>
+			</div>
 		</>
 	);
 }

@@ -38,8 +38,17 @@ export default function LikedList(props) {
 			});
 	}
 	
-// NEEDS TO BE JSON FROM "https://api.themoviedb.org/3/find/"+movieId (IMDB movie ID)
+// NEEDS JSON FROM "https://api.themoviedb.org/3/find/"+movieId (IMDB movie ID)
 // EXAMPLE:  DUNE (1984) "https://api.themoviedb.org/3/find/tt0087182/"
+// USE "https://api.themoviedb.org/3/movie/" + TMDB_id + "?&api_key=" + apikey 
+// TO GET imdb_id
+	let poster_base = "https://image.tmdb.org/t/p/w200/"; //TMDB base img url
+	
+	function viewMovieInfo(movieData) {
+		props.setPage("movie");
+		props.setMovieData(movieData);
+	}
+
 
 	if (isLoggedIn) {
 		return (
@@ -54,9 +63,8 @@ export default function LikedList(props) {
 						<div className="noimg">
 							<p>NO IMAGE AVAILABLE</p>
 						</div>}
-						<p>{movie.title} ({movie.year})</p>
-{/* 								<p><a href="#" onClick={(event) => viewMovieInfo(movie) }> */}
-{/* 									{movie.title} ({movie.release_date.slice(0,4)})</a></p> */}
+						<p><a href="#" onClick={(event) => viewMovieInfo(movie) }>
+							{movie.title} ({movie.year})</a></p>
 						<button onClick={() => deleteLikeMovie(movie)}>Unlike</button>
 						</div>
 						))}

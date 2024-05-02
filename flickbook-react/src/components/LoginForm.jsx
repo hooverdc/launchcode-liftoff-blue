@@ -19,7 +19,7 @@ export default function LoginForm(props) {
                 console.log(localStorage.getItem('sessionId'));
                 // Redirect to login page or directly log the user in
 //                 alert("Login successful");
-                setPage("home");
+                setPage("browse");
             } else {
                 alert('Login failed');
             }

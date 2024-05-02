@@ -2,29 +2,32 @@ import React , { useState } from 'react'
 import axios from 'axios';
 
 export default function MovieList (props) {
-	const isLoggedIn = props.isLoggedIn;
+// 	const isLoggedIn = props.isLoggedIn;
 	const [movie, setMovie] = useState({});
+	const poster_base = "https://image.tmdb.org/t/p/w200/"; //TMDB base img url
+		
 	const likeMovie = async (movie) => {
-	let username = JSON.parse(localStorage.getItem('sessionId')).username;
-// 	console.log(username);
-
-	const movieToLike = {
-		"id": movie.imdbID,
-		"title": movie.Title,
-		"year": movie.Year,
-		"poster": movie.Poster,
-		"username": username
-	};
-
-	axios.post('http://localhost:8080/api/movies-liked/add', movieToLike)
-		.then((response) => {
-			console.log(response);
-			alert("movie liked");
-		})
-		.catch((error) => {
-			alert("movie already liked");
-			console.log('Failed to like movie', error);
-		});
+		let username = JSON.parse(localStorage.getItem('sessionId')).username;
+	// 	console.log(username);
+	
+		const movieToLike = {
+			"id": movie.id,
+			"title": movie.title,
+			"year": movie.release_date.slice(0,4),
+			"poster": poster_base+movie.poster_path,
+			"username": username
+		};
+		console.log(movieToLike);
+	
+		axios.post('http://localhost:8080/api/movies-liked/add', movieToLike)
+			.then((response) => {
+				console.log(response);
+				alert("movie liked");
+			})
+			.catch((error) => {
+				alert("movie already liked");
+				console.log('Failed to like movie', error);
+			});
 	};
 
 	const toWatchMovie = async (movie) => {
@@ -32,13 +35,14 @@ export default function MovieList (props) {
 // 		console.log(username);
 
 	const movieToLike = {
-		"id": movie.imdbID,
-		"title": movie.Title,
-		"year": movie.Year,
-		"poster": movie.Poster,
+		"id": movie.id,
+		"title": movie.title,
+		"year": movie.release_date.slice(0,4),
+		"poster": poster_base+movie.poster_path,
 		"username": username
 	};
-
+	console.log(movieToLike);
+	
 	axios.post('http://localhost:8080/api/movies-to-watch/add', movieToLike)
 		.then((response) => {
 			console.log(response);
@@ -50,8 +54,6 @@ export default function MovieList (props) {
 		});
 	}
 	
-	let poster_base = "https://image.tmdb.org/t/p/w200/"; //TMDB base img url
-	
 	function viewMovieInfo(movieData) {
 		props.setPage("movie");
 		props.setMovieData(movieData);
@@ -62,7 +64,7 @@ export default function MovieList (props) {
 		<div className='container-fluid movie-app'>
 			<div className="row">
 				{(props.movies.length==0) ? 
-					<p className="notfound">Not Found</p> : 
+					<p className="notfound"></p> : 
 					props.movies.map((movie, i) => (
 					<div key={i} className="img-box">
 						{movie.poster_path !== null ? //OMDB returns "N/A" instead of null
@@ -75,6 +77,8 @@ export default function MovieList (props) {
 					</div>
 				))}
 			</div>
+			<br />
+			<p>Search results powered by &nbsp; <a href="https://www.themoviedb.org/">TMDB (The Movie Database)</a></p>
 		</div>
 		</>
 	);

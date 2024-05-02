@@ -3,7 +3,7 @@ import { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import Navbar from "./components/Navbar";
-import Home from "./components/Home.jsx";
+import Browse from "./components/Browse.jsx";
 import Movie from "./components/Movie";
 import MovieList from "./components/MovieList";
 import LikedList from "./components/LikedList.jsx";
@@ -14,7 +14,7 @@ import LoginForm from "./components/LoginForm.jsx";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [movieData, setMovieData] = useState("");
-  const [page, setPage] = useState("home");
+  const [page, setPage] = useState("browse");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [likeMovies, setLikeMovies] = useState([]);
   const [toWatchMovies, setToWatchMovies] = useState([]);
@@ -32,7 +32,7 @@ export default function App() {
   return (
     <>	
 			<Navbar page={page} setPage={setPage} movies={movies} setMovies={setMovies} isLoggedIn={isLoggedIn} setLoggedIn = {setIsLoggedIn} />
-			{(page == "home") && <Home page={page} setPage={setPage} isLoggedIn={isLoggedIn} likeMovies={likeMovies} setLikeMovies={setLikeMovies} toWatchMovies={toWatchMovies} setToWatchMovies={setToWatchMovies} username={username} setUsername={setUsername}/>}
+			{(page == "browse") && <Browse page={page} setPage={setPage} isLoggedIn={isLoggedIn} movies={movies} setMovies={setMovies} setMovieData={setMovieData} likeMovies={likeMovies} setLikeMovies={setLikeMovies} toWatchMovies={toWatchMovies} setToWatchMovies={setToWatchMovies} username={username} setUsername={setUsername}/>}
 			{(page == "likedlist") && <LikedList page={page} setPage={setPage} isLoggedIn={isLoggedIn} likeMovies={likeMovies} setLikeMovies={setLikeMovies} toWatchMovies={toWatchMovies} setToWatchMovies={setToWatchMovies} username={username} setUsername={setUsername}/>}
 			{(page == "watchlist") && <WatchList page={page} setPage={setPage} isLoggedIn={isLoggedIn} likeMovies={likeMovies} setLikeMovies={setLikeMovies} toWatchMovies={toWatchMovies} setToWatchMovies={setToWatchMovies} username={username} setUsername={setUsername}/>}
 			{(page == "search") && <MovieList setPage={setPage} isLoggedIn={isLoggedIn} movies={movies} setMovieData={setMovieData} />}
