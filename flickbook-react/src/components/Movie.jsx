@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
+import axios from "axios";
 
 export default function Movie (props) {
 	const movie = props.movieData;
 	const poster_base = "https://image.tmdb.org/t/p/w500/"; //TMDB base img url
+	const [change, setChange] = useState(false);
 	const genres = { 
     28: "Action",
     12: "Adventure",
@@ -42,12 +44,18 @@ export default function Movie (props) {
 		const url = 'https://api.watchmode.com/v1/title/movie-' + movieId
 			+ '/sources/?regions=US&apiKey=' + watchmodeKey;	
 // 		try { } catch (error) { console.log("fetch response failed", error); }
+		console.log(url);
 		const response = await fetch(url);
 		const responseJson = await response.json();
+		axios.get(url).then((response) => {console.log(response); setSources(response.data) }).catch((error) =>
+		{ setSources(["No streaming info available"]);
+			console.log('Failed to get streaming info', error);
+		});
+
 	
-		if (responseJson) { 
-			setSources(responseJson);
-		} else setSources({});
+		// if (responseJson) {
+		// 	setSources(responseJson);
+		// } else setSources({});
 	}
 	
 	useEffect(() => { getStreamingInfo(movie.id); }, [movie.id]);
@@ -67,12 +75,17 @@ export default function Movie (props) {
 {/* STREAMING INFO */}
 			<h3>Where to Watch</h3>
 			<div>
+				{sources.length === 0 && <p>No streaming info available</p>}
 				{sources !== null && sources.map((source, i) => (
 // 					setPrevSource(source.name);
-					<div key={i}> 
-{/* 					{source.name !== prevSource ?  */}
-							<strong>{source.name}</strong>	{source.type} {source.format} {source.price}
-					</div>
+
+					typeof source === "string" ? <p>{source}</p> :
+
+							<div key={i}>
+								{/* 					{source.name !== prevSource ?  */}
+								<strong>{source.name}</strong> {source.type} {source.format} {source.price}
+							</div>
+
 				))}
 				<br />
 				<p>Streaming data powered by &nbsp;
